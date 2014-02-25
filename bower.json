@@ -1,0 +1,15 @@
+{
+  "name": "egghead",
+  "version": "0.0.0",
+  "homepage": "https://github.com/grahamcrackers/egghead",
+  "authors": [
+    "Graham Rogers <grogers12487@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.2.13",
+    "bootstrap": "~3.1.1",
+    "foundation": "~5.1.1"
+  }
+}
