@@ -1,19 +1,61 @@
 "use strict";
 
-var app = angular.module('behaviorApp', []);
+var app = angular.module('superApp', []);
 
-app.directive("enter", function() {
-    return function (scope, element) {
-        element.bind("mouseenter", function() {
-            console.log("I'm inside of you");
-        })
-    }
-})
+app.directive("superhero", function() {
+  return {
+    restrict: "E",
+    scope: {},
 
-app.directive("leave", function() {
-    return function (scope, element) {
-        element.bind("mouseleave", function() {
-            console.log("I'm leaving on a jet plane");
-        })
+    controller: function($scope) {
+      $scope.abilities = []
+
+      this.addStrength = function () {
+        $scope.abilities.push("strength")
+      }
+
+      this.addSpeed = function() {
+        $scope.abilities.push("speed")
+      }
+
+      this.addFlight = function() {
+        $scope.abilities.push("flight")
+      }
+    },
+
+    link: function(scope, element) {
+      element.addClass("button");
+      element.bind("mouseenter", function() {
+        console.log(scope.abilities);
+      })
     }
-})
+  }
+});
+
+
+app.directive("strength", function() {
+  return {
+    require:"superhero",
+    link: function(scope, element, attrs, superheroCtrl) {
+      superheroCtrl.addStrength();
+    }
+  }
+});
+
+app.directive("speed", function() {
+  return {
+    require:"superhero",
+    link: function(scope, element, attrs, superheroCtrl) {
+      superheroCtrl.addSpeed();
+    }
+  }
+});
+
+app.directive("flight", function() {
+  return {
+    require:"superhero",
+    link: function(scope, element, attrs, superheroCtrl) {
+      superheroCtrl.addFlight();
+    }
+  }
+});
